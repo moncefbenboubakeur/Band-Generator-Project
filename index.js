@@ -17,7 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   //Step 1 - Make the get route work and render the index.ejs file.
-  res.render("index.ejs");
+  const data = {
+    currentDate: new Date().getFullYear(),
+  };
+  res.render("index.ejs", data);
 });
 
 function randomNumber(min, max) {
@@ -38,6 +41,7 @@ app.post("/submit", (req, res) => {
   const data = {
     adjective: adj[randomAdj],
     noun: noun[randomNoun],
+    currentDate: new Date().getFullYear(),
   };
 
   res.render("index.ejs", data);
